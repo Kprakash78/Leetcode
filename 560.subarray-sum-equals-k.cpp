@@ -10,34 +10,35 @@ public:
     int subarraySum(vector<int>& nums, int k) {
         int n = nums.size();
         int sum = 0, cnt = 0;
-        // unoredered_map<int ,int> mp;
-        // for (int i = 0; i < n; i++)
-        // {
-        //     sum += nums[i];
-        //     if (mp.find(sum-k)!=mp.end())
-        //     {
-        //         cnt ++;
-        //     }
-            
-        //     mp[sum]++;
-        // }
-        // return cnt;
+        unordered_map<int ,int> mp;
+        mp[0]=1;
         for (int i = 0; i < n; i++)
         {
-            for (int j = i; j < n; j++)
+            sum += nums[i];
+            if (mp.find(sum-k)!=mp.end())
             {
-                int sum = 0;
-                sum += nums[j];
-                if (sum == k)
-                {
-                    cnt++;
-
-                }
-                
+                cnt += mp[sum-k];
             }
             
+            mp[sum]++;
         }
         return cnt;
+        // for (int i = 0; i < n; i++)
+        // {
+        //     for (int j = i; j < n; j++)
+        //     {
+        //         int sum = 0;
+        //         sum += nums[j];
+        //         if (sum == k)
+        //         {
+        //             cnt++;
+
+        //         }
+                
+        //     }
+            
+        // }
+        // return cnt;
     }
 };
 // @lc code=end
